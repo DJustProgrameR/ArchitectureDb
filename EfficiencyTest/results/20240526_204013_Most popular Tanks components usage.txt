@@ -1,0 +1,4 @@
+Query: Most popular Tanks components usage
+Best Case: 595.26
+Average Case: 595.26
+Worst Case: 595.26

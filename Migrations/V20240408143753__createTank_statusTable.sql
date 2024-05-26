@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS Tank_status (
     Tank_ID INT NOT NULL,
     Client_ID INT NOT NULL,
     Experience INT NOT NULL,
+    Status INT NOT NULL,
     Shell_ID INT,
     Equiped_amount INT,
     Gun_ID INT NOT NULL,
