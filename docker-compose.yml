@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  data_filler:
+    build: ./TestDataFillers
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - PORT=${PORT}
+      - NUM_MAIN_RECORDS=${NUM_MAIN_RECORDS}
+      - NUM_TANK_RECORDS=${NUM_TANK_RECORDS}
+      - NUM_OTHER_RECORDS=${NUM_OTHER_RECORDS}
+    volumes:
+      - ./TestDataFillers:/src
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - LAST_MIGRATION_VERSION=${LAST_MIGRATION_VERSION}
+      - PORT=${PORT}
+    ports:
+      - "${PORT}:5432"
+    volumes:
+      - .env:/config/env
+      - ./Migrations:/migrations/
+      - ./initial:/docker-entrypoint-initdb.d/
+  performance_test:
+    build: ./EfficiencyTest
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - PORT=${PORT}
+      - ATTEMPTS=${ATTEMPTS}
+    volumes:
+      - ./EfficiencyTest:/src
+      - ./EfficiencyTest/results:/src/results
+    depends_on:
+      - postgres
