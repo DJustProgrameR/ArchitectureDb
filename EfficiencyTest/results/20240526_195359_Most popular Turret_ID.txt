@@ -1,4 +1,0 @@
-Query: Most popular Turret_ID
-Best Case: 315.27
-Average Case: 315.27000000000027
-Worst Case: 315.27

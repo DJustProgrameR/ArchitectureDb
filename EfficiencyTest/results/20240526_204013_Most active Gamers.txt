@@ -1,4 +1,0 @@
-Query: Most active Gamers
-Best Case: 49.23
-Average Case: 49.23000000000001
-Worst Case: 49.23
