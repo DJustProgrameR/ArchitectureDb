@@ -269,9 +269,9 @@ try:
     count = cursor.fetchone()[0]
     if count == 0:
         NUM_ROWS = num_main_records
-        for i in range(1, NUM_ROWS + 1):
-            for j in range(1, num_tank_records + 1):
-                query1 = (f"""SELECT DISTINCT Gun_ID FROM Gun_Turret_Tank WHERE Tank_ID = {j};""")
+        for client_id in range(1, NUM_ROWS + 1):
+            for tank_id in range(1, num_tank_records + 1):
+                query1 = (f"""SELECT DISTINCT Gun_ID FROM Gun_Turret_Tank WHERE Tank_ID = {tank_id};""")
                 execute_sql(query1)
                 table = cursor.fetchall()
                 guns=[]
@@ -280,8 +280,6 @@ try:
                 status_var=1
                 for k in guns:
                     gun_id = k
-                    client_id = i
-                    tank_id = j
 
                     status = status_var
                     if status_var==1:
@@ -296,10 +294,9 @@ try:
     execute_sql(query1)
     count = cursor.fetchone()[0]
     if count == 0:
-        NUM_ROWS = num_main_records
-        for i in range(1, NUM_ROWS + 1):
-            for j in range(1, num_tank_records + 1):
-                query1 = (f"""SELECT DISTINCT Turret_ID FROM Gun_Turret_Tank WHERE Tank_ID = {j};""")
+        for client_id in range(1, num_main_records + 1):
+            for tank_id in range(1, num_tank_records + 1):
+                query1 = (f"""SELECT DISTINCT Turret_ID FROM Gun_Turret_Tank WHERE Tank_ID = {tank_id};""")
                 execute_sql(query1)
                 table = cursor.fetchall()
                 turrets=[]
@@ -308,8 +305,6 @@ try:
                 status_var=1
                 for k in turrets:
                     turret_id = k
-                    client_id = i
-                    tank_id = j
 
                     status = status_var
                     if status_var==1:
@@ -324,15 +319,8 @@ try:
     execute_sql(query1)
     count = cursor.fetchone()[0]
     if count == 0:
-        NUM_ROWS = num_main_records
-        for i in range(1, NUM_ROWS + 1):
-            for j in range(1, num_tank_records + 1):
-                while True:
-                    tank_id = j
-                    client_id = i
-                    cursor.execute(f"SELECT * FROM {TABLE_NAME} WHERE Tank_ID = {tank_id} AND Client_ID = {client_id};")
-                    if cursor.fetchone() is None:
-                        break
+        for client_id in range(1, num_main_records + 1):
+            for tank_id in range(1, num_tank_records + 1):
                 experience = random_integer(1, 100)
                 status=random_integer(0, 1)
                 shell_id = random_integer(1, num_other_records)

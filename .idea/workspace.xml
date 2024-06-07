@@ -5,14 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d55baa6-752e-4825-9a3f-5618ded9ca89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Migrations/V20240526232125__indexes.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/WoTDb.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/postgres_exporter/postgres_exporter.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prometheus/prometheus.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/V20240408054736__createTankTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Migrations/V20240408054736__createTankTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/V20240408143753__createTank_statusTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Migrations/V20240408143753__createTank_statusTable.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backup/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Backup/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backup/backup_script.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backup/backup_script.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EfficiencyTest/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/EfficiencyTest/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/V20240526232125__indexes.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Migrations/V20240526232125__indexes.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/V20240526232127__partitition.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Migrations/V20240526232127__partitition.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestDataFillers/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/TestDataFillers/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestDataFillers/filler.py" beforeDir="false" afterPath="$PROJECT_DIR$/TestDataFillers/filler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestDataFillers/requests.py" beforeDir="false" afterPath="$PROJECT_DIR$/TestDataFillers/requests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/initial/init-db.sh" beforeDir="false" afterPath="$PROJECT_DIR$/initial/init-db.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/docker/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/docker/entrypoint.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/features/backup_create.py" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/features/backup_create.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/features/backup_restore.py" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/features/backup_restore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/features/callback2.py" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/features/callback2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/kubernetes/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/kubernetes/entrypoint.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/mkbinary.sh" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/mkbinary.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/patroni.py" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/patroni.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/patroni/scripts/aws.py" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/patroni/scripts/aws.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/patroni/scripts/wale_restore.py" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/patroni/scripts/wale_restore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/patroni_raft_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/patroni_raft_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/patronictl.py" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/patronictl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patroni/release.sh" beforeDir="false" afterPath="$PROJECT_DIR$/patroni/release.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +54,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -40,18 +67,30 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Database Script.V20240526232127__partitition.sql.executor": "Run",
+    "Docker.docker-compose.yml.patroni2: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.prometheus: Compose Deployment.executor": "Run",
     "RunOnceActivity.OpenDatabaseViewOnStart": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Shell Script.init-db.sh.executor": "Run",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/1/БД/WoTDb/Migrations",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "last_opened_file_path": "D:/1/БД/WoTDb",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
       "postgresql"
+    ],
+    "RunConfigurationTargetLRU": [
+      "ad9b3add-ece1-4156-9c75-34390e6075e3"
     ],
     "com.intellij.ide.scratch.LRUPopupBuilder$1/": [
       "PostgreSQL"
@@ -74,7 +113,13 @@
       <recent name="D:\1\БД\WoTDb\TestDataFillers" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Docker.docker-compose.yml.prometheus: Compose Deployment">
+    <configuration name="V20240526232127__partitition.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/Migrations/V20240526232127__partitition.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="ad9b3add-ece1-4156-9c75-34390e6075e3" />
+      <method v="2" />
+    </configuration>
     <configuration name="init-db.sh" type="ShConfigurationType" temporary="true">
       <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
@@ -90,11 +135,69 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.patroni2: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="patroni2" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.prometheus: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="prometheus" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml.prometheus: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.patroni2: Compose Deployment" />
+        <item itemvalue="Database Script.V20240526232127__partitition.sql" />
         <item itemvalue="Shell Script.init-db.sh" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d68999036c7f-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.14475.56" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1d55baa6-752e-4825-9a3f-5618ded9ca89" name="Changes" comment="" />
+      <created>1716815923282</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716815923282</updated>
+      <workItem from="1716815924327" duration="2520000" />
+      <workItem from="1716885823782" duration="19000" />
+      <workItem from="1717789632633" duration="3259000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
 </project>

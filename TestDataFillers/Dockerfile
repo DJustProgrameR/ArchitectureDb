@@ -4,3 +4,4 @@ RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev && apk add bas
 RUN pip3 install psycopg2-binary
 
 CMD python -u src/filler.py
+CMD python -u src/requests.py

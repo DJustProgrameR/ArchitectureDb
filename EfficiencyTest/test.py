@@ -64,29 +64,31 @@ if __name__ == "__main__":
     queries = [
         {
             "name": "Most popular Tanks components usage",
-            "query": """SELECT Tank_ID, SUM((case
-    when Gun_ID > 10 and Gun_ID < 100 then 1
-    when Gun_ID <= 10 or Gun_ID >= 100 then 0
+            "query": """SELECT Tank_status.Tank_ID, SUM((case
+    when Gun_equip_status.Gun_ID > 20 and Gun_equip_status.Gun_ID < 40 then 1
+    when Gun_equip_status.Gun_ID <= 20 or Gun_equip_status.Gun_ID >= 40 then 0
     end)+(case
-    when Turret_ID > 10 and Turret_ID < 100 then 1
-    when Turret_ID <= 10 or Turret_ID >= 100 then 0
+    when Turret_equip_status.Turret_ID > 20 and Turret_equip_status.Turret_ID < 40 then 1
+    when Turret_equip_status.Turret_ID <= 20 or Turret_equip_status.Turret_ID >= 40 then 0
     end))
                 FROM Tank_status
-                where Tank_ID in
+		join Gun_equip_status ON Tank_status.Tank_ID=Gun_equip_status.Tank_ID AND Tank_status.Client_ID=Gun_equip_status.Client_ID
+		join Turret_equip_status ON Tank_status.Tank_ID=Turret_equip_status.Tank_ID AND Tank_status.Client_ID=Turret_equip_status.Client_ID
+                where Tank_status.Tank_ID in
               (SELECT Tank_ID
                 FROM Tank_status
                 GROUP BY Tank_ID
                 ORDER BY COUNT(*) DESC
                 fetch first 3 rows only)
                 AND
-                Status = 1
-                GROUP BY Tank_ID;"""
+                Tank_status.Status = 1
+                GROUP BY Tank_status.Tank_ID;"""
         },
         {
             "name": "Most popular Turret_ID",
             "query": """SELECT Turret_ID
             FROM Tank_status
-            where Tank_ID < 50 AND  Status = 1
+            where Tank_ID < 5 AND  Status = 1
             GROUP BY Turret_ID
 		    ORDER BY COUNT(*) DESC
 		    LIMIT 1;"""
@@ -102,7 +104,6 @@ if __name__ == "__main__":
     ]
 
     attempts = int(os.getenv("ATTEMPTS", 3))
-
     for query in queries:
         costs = run_explain_analyze(query["query"], attempts)
         write_results(query["name"], costs)

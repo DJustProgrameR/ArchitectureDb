@@ -1,7 +1,115 @@
 version: '3'
 
-services:
+networks:
+    project_network:
 
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - prometheus_data:/prometheus
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
+
+  postgres_exporter:
+    image: quay.io/prometheuscommunity/postgres-exporter:latest
+    container_name: postgres_exporter
+    environment:
+      DATA_SOURCE_NAME: "postgresql://postgres:postgres@postgres:5432/postgres?sslmode=disable"
+    ports:
+      - "9187:9187"
+    depends_on:
+      - postgres
+
+  etcd1: &etcd
+    image: patroni
+    networks: [ project_network ]
+    environment:
+      ETCD_LISTEN_PEER_URLS: http://0.0.0.0:2380
+      ETCD_LISTEN_CLIENT_URLS: http://0.0.0.0:2379
+      ETCD_INITIAL_CLUSTER: etcd1=http://etcd1:2380,etcd2=http://etcd2:2380
+      ETCD_INITIAL_CLUSTER_STATE: new
+      ETCD_INITIAL_CLUSTER_TOKEN: tutorial
+      ETCD_UNSUPPORTED_ARCH: arm64
+    container_name: demo-etcd1
+    hostname: etcd1
+    command: etcd --name etcd1 --initial-advertise-peer-urls http://etcd1:2380
+
+  etcd2:
+    <<: *etcd
+    image: patroni
+    networks: [ project_network ]
+    container_name: demo-etcd2
+    hostname: etcd2
+    command: etcd --name etcd2 --initial-advertise-peer-urls http://etcd2:2380
+
+  haproxy:
+    image: patroni
+    networks: [ project_network ]
+    env_file: patroni/docker/patroni.env
+    hostname: haproxy
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    command: haproxy
+    environment: &haproxy_env
+      ETCDCTL_ENDPOINTS: http://etcd1:2379,http://etcd2:2379
+      PATRONI_ETCD3_HOSTS: "'etcd1:2379','etcd2:2379'"
+      PATRONI_SCOPE: project_network
+
+  patroni1:
+    image: patroni
+    networks: [ project_network ]
+    env_file: patroni/docker/patroni.env
+    hostname: patroni1
+    environment:
+      <<: *haproxy_env
+      PATRONI_NAME: patroni1
+
+  patroni2:
+    image: patroni
+    networks: [ project_network ]
+    env_file: patroni/docker/patroni.env
+    hostname: patroni2
+    environment:
+      <<: *haproxy_env
+      PATRONI_NAME: patroni2
+    depends_on:
+      - etcd1
+      - etcd2
+      - haproxy
+      - patroni1
+    volumes:
+#      - ./Backup/backups/dump.out:/backups/dump.out
+       - ./Backup/backups:/backups
+  backup:
+    build: ./Backup
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - PORT=${PORT}
+      - BACKUP_DIR=/src/backups
+      - HOURS_INTERVAL=${HOURS_INTERVAL}
+      - MAX_BACKUPS=${MAX_BACKUPS}
+    volumes:
+      - ./Backup:/src
+      - ./Backup/backups:/src/backups
+    depends_on:
+      - postgres
   performance_test:
     build: ./EfficiencyTest
     environment:
@@ -43,3 +151,7 @@ services:
       - .env:/config/env
       - ./Migrations:/migrations/
       - ./initial:/docker-entrypoint-initdb.d/
+volumes:
+  postgres_data:
+  prometheus_data:
+  grafana_data:
